@@ -2,13 +2,13 @@ pragma solidity ^0.4.23;
 
 contract TokenApprovalRegistry {
 
-    mapping (address => mapping (address => bool)) approvals;
+    mapping (address => mapping (address => bool)) private approvals;
 
-    function isApproved(address owner, address spender) external view returns (bool) {
-        return approvals[owner][spender];
+    function isApprovedForAll(address owner, address operator) external view returns (bool) {
+        return approvals[owner][operator];
     }
 
-    function approve(address spender, bool value) external {
-        approvals[msg.sender][spender] = value;
+    function setApprovalForAll(address operator, bool value) external {
+        approvals[msg.sender][operator] = value;
     }
 }
