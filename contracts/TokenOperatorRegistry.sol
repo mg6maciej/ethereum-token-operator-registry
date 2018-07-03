@@ -25,7 +25,7 @@ contract TokenOperatorRegistry {
         if (index < lastIndex) {
             address lastOperator = operators[msg.sender][lastIndex];
             operators[msg.sender][index] = lastOperator;
-            indexToOperators[msg.sender][lastOperator] = index;
+            indexInOperators[msg.sender][lastOperator] = index;
         }
         operators[msg.sender].length--;
         delete indexInOperators[msg.sender][operator];
@@ -45,10 +45,9 @@ contract TokenOperatorRegistry {
     }
 
     function operatorsRange(address owner, uint from, uint to) external view returns (address[]) {
-        address[] memory range;
-        while (from < to) {
-            range.push(operators[owner][from]);
-            from++;
+        address[] memory range = new address[](to - from);
+        for (uint i = from; i < to; i++) {
+            range[i - from] = operators[owner][i];
         }
         return range;
     }
