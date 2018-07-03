@@ -52,7 +52,7 @@ contract ERC721 {
     }
     
     function transferFrom(address from, address to, uint tokenId) external {
-        uint owner = ownerOf(tokenId);
+        address owner = ownerOf(tokenId);
         require(from == owner);
         require(msg.sender == owner || operatorRegistry.isApprovedOperator(owner, msg.sender) || ...);
         // the rest of ERC721 logic
