@@ -39,11 +39,6 @@ contract ERC721 {
     
     GlobalOpearatorRegistry public operatorRegistry = 0x0102030405...;
     
-    function approve(address spender, uint tokenId) external {
-        require(!operatorRegistry.isApprovedOperator(msg.sender, spender), "This spender is approved globally via 0x0102030405.... Setting it locally has no effect");
-        // the reset of ERC721 logic
-    }
-    
     function setApprovalForAll(address operator, bool value) external {
         require(!operatorRegistry.isApprovedOperator(msg.sender, spender), "This opearator is approved globally via 0x0102030405.... Changing it locally has no effect");
         // the reset of ERC721 logic
