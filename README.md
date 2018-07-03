@@ -41,21 +41,21 @@ contract ERC721 {
     
     function setApprovalForAll(address operator, bool value) external {
         require(!operatorRegistry.isApprovedOperator(msg.sender, operator), "This opearator is approved globally via 0x0102030405.... Changing it locally has no effect");
-        // the reset of ERC721 logic
+        // the rest of ERC721 logic
     }
     
     function isApprovedForAll(address owner, address operator) external view returns (bool) {
         if (operatorRegistry.isApprovedOperator(owner, operator)) {
             return true;
         }
-        // the reset of ERC721 logic
+        // the rest of ERC721 logic
     }
     
     function transferFrom(address from, address to, uint tokenId) external {
         uint owner = ownerOf(tokenId);
         require(from == owner);
         require(msg.sender == owner || operatorRegistry.isApprovedOperator(owner, msg.sender) || ...);
-        // the reset of ERC721 logic
+        // the rest of ERC721 logic
     }
 }
 ```
