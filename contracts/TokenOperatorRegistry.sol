@@ -32,7 +32,7 @@ contract TokenOperatorRegistry {
         emit RevokeOperator(msg.sender, operator);
     }
 
-    function isApprovedForAll(address owner, address operator) external view returns (bool) {
+    function isApprovedOperator(address owner, address operator) external view returns (bool) {
         return approvals[owner][operator];
     }
 
